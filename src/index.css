@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ANIMATION KEYFRAMES
+   ============================================================ */
+
+@layer components {
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes seatPop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* ============================================================
+     ANIMATION UTILITIES
+     ============================================================ */
+
+  .animate-slideUp {
+    animation: slideUp 300ms ease-out forwards;
+  }
+
+  .animate-slideDown {
+    animation: slideDown 400ms ease-out forwards;
+  }
+
+  .animate-seatPop {
+    animation: seatPop 150ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 300ms ease-out forwards;
+  }
+
+  /* ============================================================
+     ACCESSIBILITY PREFERENCES
+     ============================================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ============================================================
+     FOCUS & KEYBOARD NAVIGATION
+     ============================================================ */
+
+  button:focus-visible,
+  a:focus-visible,
+  [role='button']:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-contrast: more) {
+    button:focus-visible,
+    a:focus-visible,
+    [role='button']:focus-visible {
+      outline-width: 4px;
+      outline-offset: 1px;
+    }
+  }
+
+  /* ============================================================
+     DARK MODE SUPPORT
+     ============================================================ */
+
+  @media (prefers-color-scheme: dark) {
+    .bg-gray-50 {
+      @apply bg-gray-900;
+    }
+    .bg-gray-100 {
+      @apply bg-gray-800;
+    }
+    .bg-white {
+      @apply bg-gray-900;
+    }
+    .text-gray-900 {
+      @apply text-gray-100;
+    }
+    .text-gray-700 {
+      @apply text-gray-300;
+    }
+    .text-gray-600 {
+      @apply text-gray-400;
+    }
+    .border-gray-200 {
+      @apply border-gray-700;
+    }
+  }
+
+  /* ============================================================
+     CUSTOM UTILITIES
+     ============================================================ */
+
+  /* Touch target validation */
+  .touch-target-valid {
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hover effects (desktop only) */
+  @media (hover: hover) {
+    button:hover:not(:disabled) {
+      @apply transition-all duration-200;
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    /* Remove hover states on touch devices */
+    button:hover {
+      @apply no-underline;
+    }
+
+    /* Larger tap targets on mobile */
+    button {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+/* ============================================================
+   CONTAINER QUERIES (Progressive Disclosure)
+   ============================================================ */
+
+@supports (contain: layout style paint) {
+  .responsive-container {
+    contain: layout style paint;
+  }
+}

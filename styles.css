@@ -1,0 +1,244 @@
+/**
+ * Global Animations & Styles
+ * Progressive Disclosure - FerryEasy
+ *
+ * Supports prefers-reduced-motion for accessibility
+ */
+
+@layer components {
+  /* ============================
+     ANIMATION KEYFRAMES
+     ============================ */
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes seatPop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* ============================
+     ANIMATION UTILITIES
+     ============================ */
+
+  .animate-slideDown {
+    animation: slideDown 400ms ease-out;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 250ms ease-out forwards;
+  }
+
+  .animate-slideLeft {
+    animation: slideLeft 300ms ease-out;
+  }
+
+  .animate-seatPop {
+    animation: seatPop 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 300ms ease-out;
+  }
+
+  /* ============================
+     ACCESSIBILITY OVERRIDES
+     ============================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ============================
+     FOCUS & KEYBOARD NAVIGATION
+     ============================ */
+
+  /* Enhanced focus visibility */
+  button:focus-visible,
+  a:focus-visible,
+  [role='button']:focus-visible {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: more) {
+    button:focus-visible,
+    a:focus-visible,
+    [role='button']:focus-visible {
+      outline-width: 4px;
+    }
+  }
+
+  /* ============================
+     TOUCH TARGET SIZING
+     ============================ */
+
+  /* Minimum 48×48px per WCAG AAA */
+  .touch-target {
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Seat button base styles */
+  button[aria-label*='Seat'] {
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  /* ============================
+     RESPONSIVE TEXT SCALING
+     ============================ */
+
+  /* Accessible font sizing */
+  @media (prefers-reduced-transparency: reduce) {
+    * {
+      backdrop-filter: none !important;
+    }
+  }
+
+  /* ============================
+     DARK MODE SUPPORT
+     ============================ */
+
+  @media (prefers-color-scheme: dark) {
+    .bg-gray-50 {
+      @apply bg-gray-900;
+    }
+    .bg-gray-100 {
+      @apply bg-gray-800;
+    }
+    .text-gray-900 {
+      @apply text-gray-100;
+    }
+    .text-gray-700 {
+      @apply text-gray-300;
+    }
+    .text-gray-600 {
+      @apply text-gray-400;
+    }
+    .border-gray-200 {
+      @apply border-gray-700;
+    }
+  }
+
+  /* ============================
+     PRINT STYLES
+     ============================ */
+
+  @media print {
+    .sticky,
+    .fixed,
+    [role='banner'],
+    [role='navigation'] {
+      display: none;
+    }
+  }
+}
+
+/* ============================
+   GLOBAL UTILITIES
+   ============================ */
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Visual feedback for interactive elements */
+.interactive-feedback {
+  transition: transform 200ms, box-shadow 200ms, background-color 200ms;
+}
+
+.interactive-feedback:active {
+  transform: scale(0.96);
+}
+
+/* Color contrast validation (for development) */
+[data-contrast-ratio] {
+  position: relative;
+}
+
+/* Skip to main content (accessibility best practice) */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0066cc;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
