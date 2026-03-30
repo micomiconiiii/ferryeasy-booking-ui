@@ -1,13 +1,16 @@
 {
   "name": "ferryeasy-seat-selection",
   "version": "2.0.0",
+  "homepage": "http://micomiconiiii.github.io/ferryeasy-booking-ui",
   "description": "Progressive disclosure seat selection component - WCAG 2.1 AA Enhanced",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:a11y": "node scripts/audit-a11y.js"
+    "test:a11y": "node scripts/audit-a11y.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "lucide-react": "^1.7.0",
@@ -19,9 +22,11 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3",
     "vite": "^5.0.8"
   }
+  
 }

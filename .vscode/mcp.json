@@ -2,7 +2,10 @@
 	"servers": {
 		"figma": {
 			"type": "http",
-			"url": "https://mcp.figma.com/mcp"
+			"url": "https://mcp.figma.com/mcp",
+			"env": {
+        "FIGMA_PERSONAL_ACCESS_TOKEN": "${env:FIGMA_PERSONAL_ACCESS_TOKEN} "
+      }
 		},
 	},
 	"inputs": []
